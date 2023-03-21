@@ -1,4 +1,6 @@
-crate a variable of type const called numbers equal to all the number buttons (querySelectorAll())
+create an empty array of type const called input, do not assign an initial value
+
+create a variable of type const called numbers equal to all the number buttons (querySelectorAll())
 
 create a variable of type const called operators equal to all the operator buttons (querySelectorAll())
 
@@ -8,10 +10,27 @@ create a variable of type const called del, equal to the DEL element (querySelec
 
 create a variable of type const called clear, equal to the AC element (querySelector())
 
-Add the event listener to each number button, when the button is clicked, update the display
+create a variable of type const called equal, set it equal to the equal element
 
-Add the event listener to each operator button, when the button is clicked, update the display
+create a variable of type let called i, assign an initial value of 0 
+
+
+Add the event listener to each number button, when the button is clicked:
+ -> update the display
+ -> set the input[i] number +equal to the number that was clicked
+
+Add the event listener to each operator button, when the button is clicked:
+ -> update the display
+ -> set the input[i] operator object equal to the operator that was clicked
+ -> increment i 
 
 Add the event listener to the delete button, when the button is clicked, delete the previous user input from the display
 
 Add the event listener to the clear button, when the button is clicked, clear the entire display
+ 
+
+Add the event listener to the equal button, when the button is clicked, call the function evaluate()
+
+
+function: evaluate
+-> evaluates the input 
