@@ -64,3 +64,14 @@ body {
     justify-content: space-around;
 
 }
+
+.button{
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #020222;
+
+    height: 1.75em;
+    width: 3em;
+
+    color: rgb(200, 200, 200);
+}
