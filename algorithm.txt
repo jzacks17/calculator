@@ -4,7 +4,7 @@ create a variable of type const called operators equal to all the operator butto
 
 create a variable of type const called display, equal to the display element (querySelector())
 
-create a variable of type const called delete, equal to the DEL element (querySelector())
+create a variable of type const called del, equal to the DEL element (querySelector())
 
 create a variable of type const called clear, equal to the AC element (querySelector())
 
