@@ -1,0 +1,9 @@
+crate a variable of type const called numbers equal to all the number buttons (querySelectorAll())
+
+create a variable of type const called operators equal to all the operator buttons (querySelectorAll())
+
+create a variable of type const called display, equal to the display element (querySelector())
+
+Add the event listener to each number button, when the button is clicked, update the display
+
+Add the event listener to each operator button, when the button is clicked, update the display
