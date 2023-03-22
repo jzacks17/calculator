@@ -33,6 +33,8 @@ let solved = false;
 //create a variable of type let called answer, do not assign an initial value. This variable will store the answer from the previous user input.
 let answer;
 
+// create a variable of type const called colours, assign an initial value of all the colour pickers (querySelectorAll('.colourP'))
+const colours = document.querySelectorAll(".colourP");
 
 //---------------------------------------- Event Listeners -----------------------------------------------
 
@@ -169,6 +171,8 @@ clear.addEventListener('click', function () {
 //Add the event listener to the equal button, when the button is clicked, call the function evaluate()
 equal.addEventListener('click', evaluate);
 
+//Add the event listener to each colour picker, when the colour is changed call the function changeColour(). 
+colours.forEach(colour => colour.addEventListener('input', changeColour));
 
 //---------------------------------------- Functions ------------------------------------------------------------
 
@@ -291,4 +295,31 @@ function evaluate() {
 
     //set the value of solved equal to true
     solved = true;
+}
+
+//update colours of the correct elements based on colour picker decision
+function changeColour() {
+    if (this.id == 'backgroundC') {
+        //change background colour
+        document.querySelector('body').style.backgroundColor = this.value;
+    }
+
+    else if (this.id == 'calculatorC') {
+        //change calculator colour
+        document.querySelector('.calculator').style.backgroundColor = this.value;
+    }
+
+    else if (this.id == 'buttonC') {
+        //change button colour 
+        document.querySelectorAll('button').forEach(button => button.style.backgroundColor = this.value);
+        //change display colour
+        display.style.backgroundColor = this.value;
+    }
+
+    else if (this.id == 'fontC') {
+        //change button font colour
+        document.querySelectorAll('button').forEach(button => button.style.color = this.value);
+        //change display font colour
+        display.style.color = this.value;
+    }
 }
