@@ -27,9 +27,15 @@ Add the event listener to each operator button, when the button is clicked:
  -> increment numOperations
  
 
-Add the event listener to the delete button, when the button is clicked, delete the previous user input from the display
+Add the event listener to the delete button, when the button is clicked: 
+-> delete the previous user input from the display
+-> delete the value from the input array 
+    -> will need to check if it is an operator or number input 
 
-Add the event listener to the clear button, when the button is clicked, clear the entire display
+Add the event listener to the clear button, when the button is clicked:
+-> clear the entire display
+-> empty input array
+-> set the number of operations to zero
  
 
 Add the event listener to the equal button, when the button is clicked, call the function evaluate()
@@ -84,3 +90,7 @@ if there was no addition or subtraction
     -> set the sum equal to the last number 
 
 round the sum to two decimal places and display it 
+
+empty the input 
+
+set the number of operations to zero
