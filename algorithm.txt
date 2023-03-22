@@ -33,7 +33,12 @@ Add the event listener to each number button, when the button is clicked:
  -> set the input[numOperations] number object plus/equal to the number that was clicked 
 
 Add the event listener to each operator button, when the button is clicked:
+ -> if solved - allow operator to be applied directly on answer: 
+    -> set input to an object with a number and operator key
+    -> set first number equal to answer
+    -> set solved to false
  -> if a number has not been selected since the last operation, break 
+
  -> update the display
  -> set the input[numOperations] operator object equal to the operator that was clicked
  -> increment numOperations

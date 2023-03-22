@@ -56,7 +56,7 @@ numbers.forEach(number => number.addEventListener('click', function () {
     if (input[numOperations] === undefined) {
 
         //set input to an object with a number and operator key
-        input[numOperations] = { number: '', operator: '' }
+        input[numOperations] = { number: '', operator: '' };
     }
 
     //set input plus/equal to the number selected
@@ -67,8 +67,21 @@ numbers.forEach(number => number.addEventListener('click', function () {
 // Add the event listener to each operator button, when the button is clicked, update the display
 operators.forEach(operator => operator.addEventListener('click', function () {
 
+    //check to see if the equation was solved -> Allow an operator to be directly applied to answer 
+    if (solved) {
+
+        //set input to an object with a number and operator key
+        input[numOperations] = { number: '', operator: '' };
+
+        //set first number equal to answer
+        input[numOperations].number = answer;
+
+        //set solved to false
+        solved = false;
+    }
+
     //if a number has not been selected since the last operation, break 
-    if (input[numOperations] === undefined) {
+    else if (input[numOperations] === undefined) {
         return;
     }
 
@@ -84,7 +97,7 @@ operators.forEach(operator => operator.addEventListener('click', function () {
 
 }))
 
-ans.addEventListener('click', function(){
+ans.addEventListener('click', function () {
     //if a number has been selected since the last operation, break 
     if (input[numOperations] !== undefined) {
         return;
@@ -103,11 +116,11 @@ ans.addEventListener('click', function(){
         display.innerText += answer;
     }
 
-     //set input to an object with a number and operator key
-     input[numOperations] = { number: '', operator: '' };
+    //set input to an object with a number and operator key
+    input[numOperations] = { number: '', operator: '' };
 
-     //set input number object equal to answer
-     input[numOperations].number = answer;
+    //set input number object equal to answer
+    input[numOperations].number = answer;
 
 })
 
