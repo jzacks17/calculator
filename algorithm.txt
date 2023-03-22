@@ -142,7 +142,7 @@ set the value of solved equal to true
 
 function changeColour -> update colours of the correct elements based on colour picker decision
     if background colour is changed
-        -> update background colour
+        -> change background colour
 
     else if calculator colour is changed
         -> update calculator colourP
