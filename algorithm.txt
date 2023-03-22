@@ -24,6 +24,7 @@ create a variable of type let called answer, do not assign an initial value. Thi
 Add the event listener to each number button, when the button is clicked:
  -> if solved
     ->set display equal to the number selected
+    -> set solved to false
 
 ->else
     ->update the display
@@ -41,12 +42,13 @@ Add the event listener to each operator button, when the button is clicked:
  -> check if a number had been entered last -> if so, return;
  
 -> if solved
-    ->set display equal to the number selected
+    ->set display equal to answer
+    ->set solved to false
 
 ->else
     ->update the display
  
- -> otherwise set an object with a number and operator key
+ -> set an object with a number and operator key
  -> set the input number object equal to answer
 
 
@@ -117,8 +119,8 @@ if the answer is infinity
     -> display 'Math Error'
 
 otherwise: 
-    ->round the sum to two decimal places and display it 
-    -> set answer equal to the sum
+    -> set answer equal to the sum round to two decimal places 
+    -> display answer
 
 
 empty the input 
