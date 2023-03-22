@@ -1,7 +1,7 @@
 //-------------------------------------- Variable Declaration --------------------------------------------
 
-//create an empty array of type const called input, do not assign an initial value
-const input = [];
+//create an empty array of type let called input, do not assign an initial value
+let input = [];
 
 // create a variable of type const called numbers equal to all the number buttons (querySelectorAll())
 const numbers = document.querySelectorAll(".number");
@@ -11,7 +11,6 @@ const operators = document.querySelectorAll(".operator");
 
 // create a variable of type const called display, equal to the display element (querySelector())
 const display = document.querySelector(".display");
-
 
 // create a variable of type const called del, equal to the DEL element (querySelector())
 const del = document.querySelector(".delete");
@@ -29,13 +28,18 @@ let numOperations = 0;
 
 // Add the event listener to each number button, when the button is clicked, update the display
 numbers.forEach(number => number.addEventListener('click', function () {
+    
+    //update the display
     display.innerText += this.id;
 
+    //if the input[numOperations] hasn't been defined yet,
     if (input[numOperations] === undefined) {
+        
+        //set input to an object with a number and operator key
         input[numOperations] = { number: '', operator: '' }
-
     }
 
+    //set input plus/equal to the number selected
     input[numOperations].number += this.id;
 
 }))
@@ -43,15 +47,18 @@ numbers.forEach(number => number.addEventListener('click', function () {
 // Add the event listener to each operator button, when the button is clicked, update the display
 operators.forEach(operator => operator.addEventListener('click', function () {
     
-    //
+    //if a number has not been selected since the last operation, break 
     if (input[numOperations] === undefined) {
         return;
     }
     
+    //update the display
     display.innerText += this.id;
 
+    //set the input[numOperations] operator object equal to the operator that was clicked
     input[numOperations].operator = this.id;
 
+    //increment the number of operations 
     numOperations++;
 
 
@@ -59,12 +66,44 @@ operators.forEach(operator => operator.addEventListener('click', function () {
 
 //Add the event listener to the delete button, when the button is clicked, delete the previous user input from the display
 del.addEventListener('click', function () {
+
+    //If nothing has been input, return
+    if(display.innerText == ''){
+        return;
+    }
+
     display.innerText = display.innerText.slice(0, -1);
+
+    //if input[numOperations] is undefined, the previous input was an operator
+    if (input[numOperations] === undefined) {
+
+        //decrement number of operations
+        numOperations--;
+
+        //empty previous operator
+        input[numOperations].operator = '';
+
+    }
+
+    else{
+        //slice out the previous number
+        input[numOperations].number = input[numOperations].number.slice(0, -1);
+
+    }
 })
 
 // Add the event listener to the clear button, when the button is clicked, clear the entire display
 clear.addEventListener('click', function () {
+    
+    //clear entire display
     display.innerText = '';
+    
+    //empty the input
+    input = [];
+
+    //set number of operations to zero
+    numOperations = 0;
+
 })
 
 //Add the event listener to the equal button, when the button is clicked, call the function evaluate()
@@ -73,9 +112,8 @@ equal.addEventListener('click', evaluate);
 
 //---------------------------------------- Functions ------------------------------------------------------------
 
-// function: evaluate
-// -> evaluates the input 
 
+//Evaluates the input 
 function evaluate() {
 
     //variable to hold the sum of all the operations 
@@ -171,4 +209,10 @@ function evaluate() {
 
     //Round the sum to two decimal places and display it 
     display.innerText = (Math.round(sum*100))/100;
+
+    //empty the input
+    input = [];
+
+    //set number of operations to zero
+    numOperations = 0;
 }
