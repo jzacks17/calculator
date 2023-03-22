@@ -20,6 +20,7 @@ create a variable of type let called solved, assign an initial value of false. T
 
 create a variable of type let called answer, do not assign an initial value. This variable will store the answer from the previous user input. 
 
+create a variable of type const called colour, assign an initial value of all the colour pickers (querySelectorAll('.colourP'))
 
 Add the event listener to each number button, when the button is clicked:
  -> if solved
@@ -69,6 +70,8 @@ Add the event listener to the clear button, when the button is clicked:
  
 
 Add the event listener to the equal button, when the button is clicked, call the function evaluate()
+
+Add the event listener to each colour picker, when the button is clicked call the function changeColour(). 
 
 
 function: evaluate -> evaluates the input 
@@ -134,3 +137,18 @@ set the number of operations to zero
 
 set the value of solved equal to true
 
+
+function changeColour -> update colours of the correct elements based on colour picker decision
+    if background colour is changed
+        -> update background colour
+
+    else if calculator colour is changed
+        -> update calculator colourP
+    
+    else if button colour is changed
+        -> update button colour 
+        -> update display colour
+
+    else if font colour is changed
+        -> update button font colour 
+        -> update display font colour 
