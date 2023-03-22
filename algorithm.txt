@@ -10,13 +10,24 @@ create a variable of type const called del, equal to the DEL element (querySelec
 
 create a variable of type const called clear, equal to the AC element (querySelector())
 
+create a variable of type const called ans, equal to the ans element (querySelector)
+
 create a variable of type const called equal, set it equal to the equal element
 
 create a variable of type let called numOperations, assign an initial value of 0. This will store how many operations the user has input.
 
+create a variable of type let called solved, assign an initial value of false. This will be used to check if the display should be reset or not. 
+
+create a variable of type let called answer, do not assign an initial value. This variable will store the answer from the previous user input. 
+
 
 Add the event listener to each number button, when the button is clicked:
- -> update the display
+ -> if solved
+    ->set display equal to the number selected
+
+->else
+    ->update the display
+
  -> if the input[numOperations] hasn't been defined yet, set it to an object with a number and operator key
  -> set the input[numOperations] number object plus/equal to the number that was clicked 
 
@@ -26,6 +37,18 @@ Add the event listener to each operator button, when the button is clicked:
  -> set the input[numOperations] operator object equal to the operator that was clicked
  -> increment numOperations
  
+ Add the event listener to the ans button, when the button is clicked:
+ -> check if a number had been entered last -> if so, return;
+ 
+-> if solved
+    ->set display equal to the number selected
+
+->else
+    ->update the display
+ 
+ -> otherwise set an object with a number and operator key
+ -> set the input number object equal to answer
+
 
 Add the event listener to the delete button, when the button is clicked: 
 -> delete the previous user input from the display
@@ -89,8 +112,18 @@ function: evaluate -> evaluates the input
 if there was no addition or subtraction
     -> set the sum equal to the last number 
 
-round the sum to two decimal places and display it 
+
+if the answer is infinity
+    -> display 'Math Error'
+
+otherwise: 
+    ->round the sum to two decimal places and display it 
+    -> set answer equal to the sum
+
 
 empty the input 
 
 set the number of operations to zero
+
+set the value of solved equal to true
+
