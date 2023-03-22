@@ -18,23 +18,43 @@ const del = document.querySelector(".delete");
 // create a variable of type const called clear, equal to the AC element (querySelector())
 const clear = document.querySelector(".clear");
 
+//create a variable of type const called ans, equal to the ans element (querySelector)
+const ans = document.querySelector(".answer")
+
 //create a variable of type const called equal, set it equal to the equal element
 const equal = document.querySelector(".equals");
 
 //create a variable of type let called numOperations, assign an initial value of 0. This will store how many operations the user has input
 let numOperations = 0;
 
+//create a variable of type let called solved, assign an initial value of false. This will be used to check if the display should be reset or not. 
+let solved = false;
+
+//create a variable of type let called answer, do not assign an initial value. This variable will store the answer from the previous user input.
+let answer;
+
+
 //---------------------------------------- Event Listeners -----------------------------------------------
 
 // Add the event listener to each number button, when the button is clicked, update the display
 numbers.forEach(number => number.addEventListener('click', function () {
-    
-    //update the display
-    display.innerText += this.id;
+
+    if (solved) {
+        //set display equal to number selected
+        display.innerText = this.id;
+
+        //set solved to false
+        solved = false;
+    }
+
+    else {
+        //update the display
+        display.innerText += this.id;
+    }
 
     //if the input[numOperations] hasn't been defined yet,
     if (input[numOperations] === undefined) {
-        
+
         //set input to an object with a number and operator key
         input[numOperations] = { number: '', operator: '' }
     }
@@ -46,12 +66,12 @@ numbers.forEach(number => number.addEventListener('click', function () {
 
 // Add the event listener to each operator button, when the button is clicked, update the display
 operators.forEach(operator => operator.addEventListener('click', function () {
-    
+
     //if a number has not been selected since the last operation, break 
     if (input[numOperations] === undefined) {
         return;
     }
-    
+
     //update the display
     display.innerText += this.id;
 
@@ -64,11 +84,38 @@ operators.forEach(operator => operator.addEventListener('click', function () {
 
 }))
 
+ans.addEventListener('click', function(){
+    //if a number has been selected since the last operation, break 
+    if (input[numOperations] !== undefined) {
+        return;
+    }
+
+    if (solved) {
+        //set display equal to answer
+        display.innerText = answer;
+
+        //set solved to false
+        solved = false;
+    }
+
+    else {
+        //update the display
+        display.innerText += answer;
+    }
+
+     //set input to an object with a number and operator key
+     input[numOperations] = { number: '', operator: '' };
+
+     //set input number object equal to answer
+     input[numOperations].number = answer;
+
+})
+
 //Add the event listener to the delete button, when the button is clicked, delete the previous user input from the display
 del.addEventListener('click', function () {
 
     //If nothing has been input, return
-    if(display.innerText == ''){
+    if (display.innerText == '') {
         return;
     }
 
@@ -85,7 +132,7 @@ del.addEventListener('click', function () {
 
     }
 
-    else{
+    else {
         //slice out the previous number
         input[numOperations].number = input[numOperations].number.slice(0, -1);
 
@@ -94,10 +141,10 @@ del.addEventListener('click', function () {
 
 // Add the event listener to the clear button, when the button is clicked, clear the entire display
 clear.addEventListener('click', function () {
-    
+
     //clear entire display
     display.innerText = '';
-    
+
     //empty the input
     input = [];
 
@@ -201,18 +248,34 @@ function evaluate() {
     }
 
     //check to see if there was no addition or subtraction
-    if(firstOperation){
+    if (firstOperation) {
 
         //if so, set the sum equal to the last value 
         sum = input[input.length - 1].number;
     }
 
-    //Round the sum to two decimal places and display it 
-    display.innerText = (Math.round(sum*100))/100;
+
+    //check to see if the user divided by zero 
+    if (sum == Infinity) {
+        display.innerText = 'Math Error'
+    }
+
+    else {
+
+        //set answer equal to the sum round to two decimal places 
+        answer = (Math.round(sum * 100)) / 100;
+
+        //display answer
+        display.innerText = answer;
+    }
+
 
     //empty the input
     input = [];
 
     //set number of operations to zero
     numOperations = 0;
+
+    //set the value of solved equal to true
+    solved = true;
 }
