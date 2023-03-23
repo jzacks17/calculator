@@ -40,18 +40,14 @@ const colours = document.querySelectorAll(".colourP");
 
 window.addEventListener('keydown', function (e) {
 
-    // console.log(e.key);
-
     numbers.forEach(number =>{
         if (number.id == e.key){
-            console.log(number);
             userNumber(number);
         }
     })
 
     operators.forEach(operator =>{
         if (operator.id == e.key){
-            console.log(operator);
             userOperator(operator);
         }
     })
