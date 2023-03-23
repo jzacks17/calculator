@@ -38,40 +38,11 @@ const colours = document.querySelectorAll(".colourP");
 
 //---------------------------------------- Event Listeners -----------------------------------------------
 
-window.addEventListener('keydown', function (e) {
-
-    numbers.forEach(number =>{
-        if (number.id == e.key){
-            userNumber(number);
-        }
-    })
-
-    operators.forEach(operator =>{
-        if (operator.id == e.key){
-            userOperator(operator);
-        }
-    })
-
-    if (e.key == equal.id){
-        evaluate();
-    }
-
-    else if (e.key == "Backspace"){
-        delete1();
-    }
-
-    else if(e.key == "Delete"){
-        allClear();
-    }
-
-});
-
-
 // Add the event listener to each number button, when the button is clicked, update the display
-numbers.forEach(number => number.addEventListener('click', function () {userNumber(this);}))
+numbers.forEach(number => number.addEventListener('click', function () { userNumber(this); }))
 
 // Add the event listener to each operator button, when the button is clicked, update the display
-operators.forEach(operator => operator.addEventListener('click', function () {userOperator(this);}))
+operators.forEach(operator => operator.addEventListener('click', function () { userOperator(this); }))
 
 //Add the event listener to the delete button, when the button is clicked, delete the previous user input from the display
 del.addEventListener('click', delete1);
@@ -79,7 +50,7 @@ del.addEventListener('click', delete1);
 // Add the event listener to the clear button, when the button is clicked, clear the entire display
 clear.addEventListener('click', allClear)
 
-
+// Add the event listener to the ans button, when clicked call getAnswer() 
 ans.addEventListener('click', getAnswer);
 
 //Add the event listener to the equal button, when the button is clicked, call the function evaluate()
@@ -88,10 +59,62 @@ equal.addEventListener('click', evaluate);
 //Add the event listener to each colour picker, when the colour is changed call the function changeColour(). 
 colours.forEach(colour => colour.addEventListener('input', changeColour));
 
+//Add event listener for if a key is selected
+window.addEventListener('keydown', function (e) {
+
+    //check to see if a number key was selected
+    numbers.forEach(number => {
+        if (number.id == e.key) {
+            userNumber(number);
+            return;
+        }
+    })
+
+    //check to see if a operator key was selected
+    operators.forEach(operator => {
+        if (operator.id == e.key) {
+            userOperator(operator);
+            return;
+        }
+    })
+
+    //check to see if * was selected - set equal to multiplies
+    if(e.key == "*"){
+        userOperator(document.getElementById("×"));
+        return;
+    }
+
+    //check to see if / or % was selected - set equal to divides
+    if (e.key == "%" || e.key == '/'){
+        userOperator(document.getElementById("÷"));
+        return;
+    }
+
+    //check if the equal key was hit 
+    if (e.key == equal.id) {
+        evaluate();
+        return;
+    }
+
+    //check if the backspace key was hit 
+    if (e.key == "Backspace") {
+        delete1();
+        return;
+    }
+
+    //check to see if the delete key was hit 
+    if (e.key == "Delete") {
+        allClear();
+        return;
+    }
+
+});
+
+
 //---------------------------------------- Functions ------------------------------------------------------------
 
 //updates numbers when a key is pressed
-function userNumber(number){
+function userNumber(number) {
     //if the input[numOperations] hasn't been defined yet,
     if (input[numOperations] === undefined) {
 
@@ -126,7 +149,7 @@ function userNumber(number){
 }
 
 //updates operators when a operator key is pressed
-function userOperator(operator){
+function userOperator(operator) {
     //check to see if the equation was solved -> Allow an operator to be directly applied to answer 
     if (solved) {
 
@@ -155,7 +178,7 @@ function userOperator(operator){
     numOperations++;
 }
 
-function delete1(){
+function delete1() {
     //If nothing has been input, return
     if (display.innerText == '') {
         return;
@@ -175,7 +198,7 @@ function delete1(){
     }
 
     //if the user deletes back through a full number to an operator, the number will be empty 
-    else if (input[numOperations].number == ''){
+    else if (input[numOperations].number == '') {
         //decrement number of operations
         numOperations--;
 
@@ -190,15 +213,15 @@ function delete1(){
     }
 }
 
-function allClear(){
-     //clear entire display
-     display.innerText = '';
+function allClear() {
+    //clear entire display
+    display.innerText = '';
 
-     //empty the input
-     input = [];
- 
-     //set number of operations to zero
-     numOperations = 0;
+    //empty the input
+    input = [];
+
+    //set number of operations to zero
+    numOperations = 0;
 }
 
 function getAnswer() {
