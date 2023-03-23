@@ -92,8 +92,8 @@ window.addEventListener('keydown', function (e) {
         return;
     }
 
-    //check if the equal key was hit 
-    if (e.key == equal.id) {
+    //check if the equal or enter key was hit 
+    if (e.key == equal.id || e.key == "Enter") {
         evaluate();
         return;
     }
