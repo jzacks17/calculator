@@ -60,6 +60,10 @@ window.addEventListener('keydown', function (e) {
         delete1();
     }
 
+    else if(e.key == "Delete"){
+        allClear();
+    }
+
 });
 
 
@@ -100,18 +104,7 @@ ans.addEventListener('click', function () {
 del.addEventListener('click', delete1);
 
 // Add the event listener to the clear button, when the button is clicked, clear the entire display
-clear.addEventListener('click', function () {
-
-    //clear entire display
-    display.innerText = '';
-
-    //empty the input
-    input = [];
-
-    //set number of operations to zero
-    numOperations = 0;
-
-})
+clear.addEventListener('click', allClear)
 
 //Add the event listener to the equal button, when the button is clicked, call the function evaluate()
 equal.addEventListener('click', evaluate);
@@ -219,6 +212,17 @@ function delete1(){
         input[numOperations].number = input[numOperations].number.slice(0, -1);
 
     }
+}
+
+function allClear(){
+     //clear entire display
+     display.innerText = '';
+
+     //empty the input
+     input = [];
+ 
+     //set number of operations to zero
+     numOperations = 0;
 }
 
 //Evaluates the input 
