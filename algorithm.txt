@@ -24,60 +24,109 @@ create a variable of type const called colours, assign an initial value of all t
 
 
 
-Add the event listener to each number button, when the button is clicked:
- -> if the input[numOperations] hasn't been defined yet, set it to an object with a number and operator key
+Add the event listener to each number button, when the button is clicked call userNumber() 
 
- -> if decimal was selected and the number already contains a decimal, return
+Add the event listener to each operator button, when the button is clicked, call userOperator()
 
- -> if solved
-    ->set display equal to the number selected
-    -> set solved to false
+Add the event listener to the delete button, when the button is clicked, call delete1()
 
-->else
-    ->update the display
-
- -> set the input[numOperations] number object plus/equal to the number that was clicked 
-
-Add the event listener to each operator button, when the button is clicked:
- -> if solved - allow operator to be applied directly on answer: 
-    -> set input to an object with a number and operator key
-    -> set first number equal to answer
-    -> set solved to false
- -> if a number has not been selected since the last operation, break 
-
- -> update the display
- -> set the input[numOperations] operator object equal to the operator that was clicked
- -> increment numOperations
+Add the event listener to the clear button, when the button is clicked, call clearAll()
  
- Add the event listener to the ans button, when the button is clicked:
- -> check if a number had been entered last -> if so, return;
- 
--> if solved
-    ->set display equal to answer
-    ->set solved to false
-
-->else
-    ->update the display
- 
- -> set an object with a number and operator key
- -> set the input number object equal to answer
-
-
-Add the event listener to the delete button, when the button is clicked: 
--> delete the previous user input from the display
--> delete the value from the input array 
-    -> will need to check if it is an operator or number input 
-
-Add the event listener to the clear button, when the button is clicked:
--> clear the entire display
--> empty input array
--> set the number of operations to zero
- 
-
 Add the event listener to the equal button, when the button is clicked, call the function evaluate()
 
 Add the event listener to each colour picker, when the button is clicked call the function changeColour(). 
 
+Add the event listener to the window, if a key is hit
+
+    -> Check to see if a number was hit
+        -> if so, call userNumber
+
+    -> Check to see if a operator was hit
+        -> call userOperator
+
+    -> Check to see if * was hit
+        -> call userOperator passing it the multiplication button
+
+    -> check to see if % or / was hit
+        ->call user operator, passing it the division button
+
+    -> check if the equal key was hit
+        -> call evaluate()
+
+    -> check if the backspace key was hit 
+        -> call delete1()
+
+     -> check if the delete key was hit 
+        -> call clearAll(0)
+
+
+function: userNumber:
+updates display and input array on user number input
+    
+    ->If the input[numOperations] hasn't been defined yet
+        -> set input to an object with a number and operator key
+
+    ->If a decimal is chosen and the string already contains a decimal, return
+
+    -> if solved is true:
+        -> set display equal to number selected
+        -> set solved to false
+    
+    -> otherwise:
+        ->update the display
+    
+    -> set input plus/equal to the number selected
+
+Function userOperators:
+updates operators when a operator key is pressed
+
+    ->check to see if the equation was solved -> Allow an operator to be directly applied to answer 
+
+    -> if a number has not been selected since the last operation, break 
+
+    -> Update the display
+
+    -> set the input[numOperations] operator object equal to the operator that was clicked
+
+    -> increment the number of operations 
+
+Fundtion delete1()
+delete the previous user input from the display
+
+    ->If nothing has been input, return
+
+    -> remove last character from display
+
+    -> if the input[numOperations] is undefined, the previous input was an operator
+        ->decrement number of operations
+        -> empty previous operator
+    
+    -> else if the user deletes back through a full number to an operator, the number will be empty 
+        ->decrement number of operations
+        -> empty previous operator
+    
+    -> otherwise slice out the previous number input 
+
+function clearAll()
+Clear entire display and input array
+
+    -> clear entire display
+    -> empty the input
+    -> set number of operations to zero
+
+function getAnswer()
+Displays answer and adds it as the most recent number in input array
+
+    -> if a number has been selected since the last operation, break 
+
+    -> if solved
+        ->set display equal to answer
+        -> set solved to false
+    -> else
+        -> update the display
+
+    -> set input to an object with a number and operator key
+    -> set input number object equal to answer
 
 function: evaluate -> evaluates the input 
 

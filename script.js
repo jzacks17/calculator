@@ -38,17 +38,17 @@ const colours = document.querySelectorAll(".colourP");
 
 //---------------------------------------- Event Listeners -----------------------------------------------
 
-// Add the event listener to each number button, when the button is clicked, update the display
+// Add the event listener to each number button, when the button is clicked call userNumber
 numbers.forEach(number => number.addEventListener('click', function () { userNumber(this); }))
 
-// Add the event listener to each operator button, when the button is clicked, update the display
+// Add the event listener to each operator button, when the button is clicked, call userOperator
 operators.forEach(operator => operator.addEventListener('click', function () { userOperator(this); }))
 
-//Add the event listener to the delete button, when the button is clicked, delete the previous user input from the display
+//Add the event listener to the delete button, when the button is clicked, call delete1 
 del.addEventListener('click', delete1);
 
-// Add the event listener to the clear button, when the button is clicked, clear the entire display
-clear.addEventListener('click', allClear)
+// Add the event listener to the clear button, when the button is clicked, call clearAll
+clear.addEventListener('click', clearAll)
 
 // Add the event listener to the ans button, when clicked call getAnswer() 
 ans.addEventListener('click', getAnswer);
@@ -59,10 +59,10 @@ equal.addEventListener('click', evaluate);
 //Add the event listener to each colour picker, when the colour is changed call the function changeColour(). 
 colours.forEach(colour => colour.addEventListener('input', changeColour));
 
-//Add event listener for if a key is selected
+//Add event listener to the whole window, if a key is hit
 window.addEventListener('keydown', function (e) {
 
-    //check to see if a number key was selected
+    //check to see if a number key was hit
     numbers.forEach(number => {
         if (number.id == e.key) {
             userNumber(number);
@@ -70,7 +70,7 @@ window.addEventListener('keydown', function (e) {
         }
     })
 
-    //check to see if a operator key was selected
+    //check to see if a operator key was hit
     operators.forEach(operator => {
         if (operator.id == e.key) {
             userOperator(operator);
@@ -78,14 +78,16 @@ window.addEventListener('keydown', function (e) {
         }
     })
 
-    //check to see if * was selected - set equal to multiplies
+    //check to see if * was hit- set equal to multiplies
     if(e.key == "*"){
+        //call user operator, passing it the multiplication button
         userOperator(document.getElementById("×"));
         return;
     }
 
-    //check to see if / or % was selected - set equal to divides
+    //check to see if / or % was hit - set equal to divides
     if (e.key == "%" || e.key == '/'){
+        //call user operator, passing it the division button
         userOperator(document.getElementById("÷"));
         return;
     }
@@ -104,7 +106,7 @@ window.addEventListener('keydown', function (e) {
 
     //check to see if the delete key was hit 
     if (e.key == "Delete") {
-        allClear();
+        clearAll();
         return;
     }
 
@@ -113,7 +115,7 @@ window.addEventListener('keydown', function (e) {
 
 //---------------------------------------- Functions ------------------------------------------------------------
 
-//updates numbers when a key is pressed
+//updates display and input array on user number input
 function userNumber(number) {
     //if the input[numOperations] hasn't been defined yet,
     if (input[numOperations] === undefined) {
@@ -178,12 +180,14 @@ function userOperator(operator) {
     numOperations++;
 }
 
+//delete the previous user input from the display
 function delete1() {
     //If nothing has been input, return
     if (display.innerText == '') {
         return;
     }
 
+    //remove last character from display
     display.innerText = display.innerText.slice(0, -1);
 
     //if the input[numOperations] is undefined, the previous input was an operator
@@ -213,7 +217,8 @@ function delete1() {
     }
 }
 
-function allClear() {
+
+function  clearAll() {
     //clear entire display
     display.innerText = '';
 
