@@ -73,38 +73,14 @@ numbers.forEach(number => number.addEventListener('click', function () {userNumb
 // Add the event listener to each operator button, when the button is clicked, update the display
 operators.forEach(operator => operator.addEventListener('click', function () {userOperator(this);}))
 
-ans.addEventListener('click', function () {
-    //if a number has been selected since the last operation, break 
-    if (input[numOperations] !== undefined) {
-        return;
-    }
-
-    if (solved) {
-        //set display equal to answer
-        display.innerText = answer;
-
-        //set solved to false
-        solved = false;
-    }
-
-    else {
-        //update the display
-        display.innerText += answer;
-    }
-
-    //set input to an object with a number and operator key
-    input[numOperations] = { number: '', operator: '' };
-
-    //set input number object equal to answer
-    input[numOperations].number = answer;
-
-})
-
 //Add the event listener to the delete button, when the button is clicked, delete the previous user input from the display
 del.addEventListener('click', delete1);
 
 // Add the event listener to the clear button, when the button is clicked, clear the entire display
 clear.addEventListener('click', allClear)
+
+
+ans.addEventListener('click', getAnswer);
 
 //Add the event listener to the equal button, when the button is clicked, call the function evaluate()
 equal.addEventListener('click', evaluate);
@@ -223,6 +199,33 @@ function allClear(){
  
      //set number of operations to zero
      numOperations = 0;
+}
+
+function getAnswer() {
+    //if a number has been selected since the last operation, break 
+    if (input[numOperations] !== undefined) {
+        return;
+    }
+
+    if (solved) {
+        //set display equal to answer
+        display.innerText = answer;
+
+        //set solved to false
+        solved = false;
+    }
+
+    else {
+        //update the display
+        display.innerText += answer;
+    }
+
+    //set input to an object with a number and operator key
+    input[numOperations] = { number: '', operator: '' };
+
+    //set input number object equal to answer
+    input[numOperations].number = answer;
+
 }
 
 //Evaluates the input 
