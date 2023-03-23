@@ -84,20 +84,36 @@ function: evaluate -> evaluates the input
  ->create a variable of type let called sum, provide it an initial value of null
  ->create a variable of type let called firstOperation, provide it an initial value of true. Variable to see if the first addition/subtraction was done
 
+ 
+ for loop for exponent, while counter is less than the lengoth of input - 1, increment the counter: 
+
+    -> if the input of operator i is exponent
+        ->raise the number of i to the power of number of i + 1, storing the output in the next number (i+1)
+        ->set the current number to null (so that we can skip over it in future steps)
+
+ 
  for loop for multiplication/division, set counter to zero, while counter is less than the length of input - 1, increment the counter:
 
+    -> if the current number is null (it was already raised to the exponent)
+        -> skip over
+
+    -> create a variable of type let called j, set it equal to the counter + 1. Variable will be used to check for the next non-null number
+
+    -> while input number of j is null
+        -> increment j
+    
     -> if the input operator of i is multiplication 
-        -> perform multiplication, storing the product in the next number
+        -> perform multiplication, storing the product in the next number (m)
         -> set the current number to null (so that we can skip over it in the addition/subtraction section)
 
     -> else if the input operator of i is division
-         -> perform division, storing the product in the next number
+        -> perform division, storing the product in the next number (m)
         -> set the current number to null (so that we can skip over it in the addition/subtraction section)
 
 
  for loop for addition/subtraction, set counter to zero, while counter is less than the length of input - 1, increment the counter:
 
-    -> if the current number is null (it was already multiplied/divided)
+    -> if the current number is null (it was already raised to the exponent or multiplied/divided)
         -> skip over
 
     -> create a variable of type let called j, set it equal to the counter + 1. Variable will be used to check for the next non-null number
