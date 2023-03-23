@@ -45,14 +45,14 @@ window.addEventListener('keydown', function (e) {
     numbers.forEach(number =>{
         if (number.id == e.key){
             console.log(number);
-            keyNumber(number);
+            userNumber(number);
         }
     })
 
     operators.forEach(operator =>{
         if (operator.id == e.key){
             console.log(operator);
-            keyOperator(operator);
+            userOperator(operator);
         }
     })
 
@@ -68,75 +68,10 @@ window.addEventListener('keydown', function (e) {
 
 
 // Add the event listener to each number button, when the button is clicked, update the display
-numbers.forEach(number => number.addEventListener('click', function () {
-
-
-    //if the input[numOperations] hasn't been defined yet,
-    if (input[numOperations] === undefined) {
-
-        //set input to an object with a number and operator key
-        input[numOperations] = { number: '', operator: '' };
-    }
-
-    //if a decimal is chosen and the string already contains a decimal, return
-    if (this.id == "." && input[numOperations].number.includes(".")) {
-
-        return;
-
-    }
-
-
-    if (solved) {
-        //set display equal to number selected
-        display.innerText = this.id;
-
-        //set solved to false
-        solved = false;
-    }
-
-    else {
-        //update the display
-        display.innerText += this.id;
-    }
-
-
-    //set input plus/equal to the number selected
-    input[numOperations].number += this.id;
-
-}))
+numbers.forEach(number => number.addEventListener('click', function () {userNumber(this);}))
 
 // Add the event listener to each operator button, when the button is clicked, update the display
-operators.forEach(operator => operator.addEventListener('click', function () {
-
-    //check to see if the equation was solved -> Allow an operator to be directly applied to answer 
-    if (solved) {
-
-        //set input to an object with a number and operator key
-        input[numOperations] = { number: '', operator: '' };
-
-        //set first number equal to answer
-        input[numOperations].number = answer;
-
-        //set solved to false
-        solved = false;
-    }
-
-    //if a number has not been selected since the last operation, break 
-    else if (input[numOperations] === undefined) {
-        return;
-    }
-
-    //update the display
-    display.innerText += this.id;
-
-    //set the input[numOperations] operator object equal to the operator that was clicked
-    input[numOperations].operator = this.id;
-
-    //increment the number of operations 
-    numOperations++;
-
-
-}))
+operators.forEach(operator => operator.addEventListener('click', function () {userOperator(this);}))
 
 ans.addEventListener('click', function () {
     //if a number has been selected since the last operation, break 
@@ -191,7 +126,7 @@ colours.forEach(colour => colour.addEventListener('input', changeColour));
 //---------------------------------------- Functions ------------------------------------------------------------
 
 //updates numbers when a key is pressed
-function keyNumber(number){
+function userNumber(number){
     //if the input[numOperations] hasn't been defined yet,
     if (input[numOperations] === undefined) {
 
@@ -226,7 +161,7 @@ function keyNumber(number){
 }
 
 //updates operators when a operator key is pressed
-function keyOperator(operator){
+function userOperator(operator){
     //check to see if the equation was solved -> Allow an operator to be directly applied to answer 
     if (solved) {
 
