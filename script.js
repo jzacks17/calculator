@@ -38,25 +38,54 @@ const colours = document.querySelectorAll(".colourP");
 
 //---------------------------------------- Event Listeners -----------------------------------------------
 
+window.addEventListener('keydown', function (e) {
+
+    // console.log(e.key);
+
+    numbers.forEach(number =>{
+        if (number.id == e.key){
+            console.log(number);
+            keyNumber(number);
+        }
+    })
+
+    operators.forEach(operator =>{
+        if (operator.id == e.key){
+            console.log(operator);
+            keyOperator(operator);
+        }
+    })
+
+    if (e.key == equal.id){
+        evaluate();
+    }
+
+    else if (e.key == "Backspace"){
+        delete1();
+    }
+
+});
+
+
 // Add the event listener to each number button, when the button is clicked, update the display
 numbers.forEach(number => number.addEventListener('click', function () {
 
-    
-     //if the input[numOperations] hasn't been defined yet,
-     if (input[numOperations] === undefined) {
+
+    //if the input[numOperations] hasn't been defined yet,
+    if (input[numOperations] === undefined) {
 
         //set input to an object with a number and operator key
         input[numOperations] = { number: '', operator: '' };
     }
 
     //if a decimal is chosen and the string already contains a decimal, return
-    if(this.id == "." && input[numOperations].number.includes(".")){
+    if (this.id == "." && input[numOperations].number.includes(".")) {
 
         return;
 
     }
-    
-    
+
+
     if (solved) {
         //set display equal to number selected
         display.innerText = this.id;
@@ -137,32 +166,7 @@ ans.addEventListener('click', function () {
 })
 
 //Add the event listener to the delete button, when the button is clicked, delete the previous user input from the display
-del.addEventListener('click', function () {
-
-    //If nothing has been input, return
-    if (display.innerText == '') {
-        return;
-    }
-
-    display.innerText = display.innerText.slice(0, -1);
-
-    //if input[numOperations] is undefined, the previous input was an operator
-    if (input[numOperations] === undefined) {
-
-        //decrement number of operations
-        numOperations--;
-
-        //empty previous operator
-        input[numOperations].operator = '';
-
-    }
-
-    else {
-        //slice out the previous number
-        input[numOperations].number = input[numOperations].number.slice(0, -1);
-
-    }
-})
+del.addEventListener('click', delete1);
 
 // Add the event listener to the clear button, when the button is clicked, clear the entire display
 clear.addEventListener('click', function () {
@@ -186,6 +190,105 @@ colours.forEach(colour => colour.addEventListener('input', changeColour));
 
 //---------------------------------------- Functions ------------------------------------------------------------
 
+//updates numbers when a key is pressed
+function keyNumber(number){
+    //if the input[numOperations] hasn't been defined yet,
+    if (input[numOperations] === undefined) {
+
+        //set input to an object with a number and operator key
+        input[numOperations] = { number: '', operator: '' };
+    }
+
+    //if a decimal is chosen and the string already contains a decimal, return
+    if (number.id == "." && input[numOperations].number.includes(".")) {
+
+        return;
+
+    }
+
+
+    if (solved) {
+        //set display equal to number selected
+        display.innerText = number.id;
+
+        //set solved to false
+        solved = false;
+    }
+
+    else {
+        //update the display
+        display.innerText += number.id;
+    }
+
+
+    //set input plus/equal to the number selected
+    input[numOperations].number += number.id;
+}
+
+//updates operators when a operator key is pressed
+function keyOperator(operator){
+    //check to see if the equation was solved -> Allow an operator to be directly applied to answer 
+    if (solved) {
+
+        //set input to an object with a number and operator key
+        input[numOperations] = { number: '', operator: '' };
+
+        //set first number equal to answer
+        input[numOperations].number = answer;
+
+        //set solved to false
+        solved = false;
+    }
+
+    //if a number has not been selected since the last operation, break 
+    else if (input[numOperations] === undefined) {
+        return;
+    }
+
+    //update the display
+    display.innerText += operator.id;
+
+    //set the input[numOperations] operator object equal to the operator that was clicked
+    input[numOperations].operator = operator.id;
+
+    //increment the number of operations 
+    numOperations++;
+}
+
+function delete1(){
+    //If nothing has been input, return
+    if (display.innerText == '') {
+        return;
+    }
+
+    display.innerText = display.innerText.slice(0, -1);
+
+    //if the input[numOperations] is undefined, the previous input was an operator
+    if (input[numOperations] === undefined) {
+
+        //decrement number of operations
+        numOperations--;
+
+        //empty previous operator
+        input[numOperations].operator = '';
+
+    }
+
+    //if the user deletes back through a full number to an operator, the number will be empty 
+    else if (input[numOperations].number == ''){
+        //decrement number of operations
+        numOperations--;
+
+        //empty previous operator
+        input[numOperations].operator = '';
+    }
+
+    else {
+        //slice out the previous number
+        input[numOperations].number = input[numOperations].number.slice(0, -1);
+
+    }
+}
 
 //Evaluates the input 
 function evaluate() {
@@ -199,13 +302,13 @@ function evaluate() {
     //Exponent
     for (let i = 0; i < (input.length - 1); i++) {
         if (input[i].operator == '^') {
-            
+
             //raise the number to the power, storing the ouput in the next number
-            input[i+1].number = Math.pow(+input[i].number, +input[i+1].number);
+            input[i + 1].number = Math.pow(+input[i].number, +input[i + 1].number);
 
             //set the current number to null, so that we can skip this operation in next steps
             input[i].number = null;
-        
+
         }
     }
 
