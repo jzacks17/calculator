@@ -41,6 +41,22 @@ const colours = document.querySelectorAll(".colourP");
 // Add the event listener to each number button, when the button is clicked, update the display
 numbers.forEach(number => number.addEventListener('click', function () {
 
+    
+     //if the input[numOperations] hasn't been defined yet,
+     if (input[numOperations] === undefined) {
+
+        //set input to an object with a number and operator key
+        input[numOperations] = { number: '', operator: '' };
+    }
+
+    //if a decimal is chosen and the string already contains a decimal, return
+    if(this.id == "." && input[numOperations].number.includes(".")){
+
+        return;
+
+    }
+    
+    
     if (solved) {
         //set display equal to number selected
         display.innerText = this.id;
@@ -54,12 +70,6 @@ numbers.forEach(number => number.addEventListener('click', function () {
         display.innerText += this.id;
     }
 
-    //if the input[numOperations] hasn't been defined yet,
-    if (input[numOperations] === undefined) {
-
-        //set input to an object with a number and operator key
-        input[numOperations] = { number: '', operator: '' };
-    }
 
     //set input plus/equal to the number selected
     input[numOperations].number += this.id;
