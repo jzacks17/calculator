@@ -103,11 +103,11 @@ function: evaluate -> evaluates the input
         -> increment j
     
     -> if the input operator of i is multiplication 
-        -> perform multiplication, storing the product in the next number (m)
+        -> perform multiplication, storing the product in the next number (j)
         -> set the current number to null (so that we can skip over it in the addition/subtraction section)
 
     -> else if the input operator of i is division
-        -> perform division, storing the product in the next number (m)
+        -> perform division, storing the product in the next number (j)
         -> set the current number to null (so that we can skip over it in the addition/subtraction section)
 
 

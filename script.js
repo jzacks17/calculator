@@ -196,13 +196,38 @@ function evaluate() {
     //variable to see if the first addition/subtraction was done
     let firstOperation = true;
 
+    //Exponent
+    for (let i = 0; i < (input.length - 1); i++) {
+        if (input[i].operator == '^') {
+            
+            //raise the number to the power, storing the ouput in the next number
+            input[i+1].number = Math.pow(+input[i].number, +input[i+1].number);
+
+            //set the current number to null, so that we can skip this operation in next steps
+            input[i].number = null;
+        
+        }
+    }
+
     //Multiplication and division
     for (let i = 0; i < (input.length - 1); i++) {
+
+        //skip if the current number is null (means it was already raised to the power)
+        if (input[i].number == null) {
+            continue;
+        }
+
+        let j = i + 1
+
+        //Skip until we find the next non-null number
+        while (input[j].number == null) {
+            j++;
+        }
 
         if (input[i].operator == '×') {
 
             //perform multiplication, storing the product in the next number
-            input[i + 1].number = +input[i].number * +input[i + 1].number;
+            input[j].number = +input[i].number * +input[j].number;
 
             //set previous number to null
             input[i].number = null;
@@ -212,7 +237,7 @@ function evaluate() {
         else if (input[i].operator == '÷') {
 
             //perform division, storing the product in the next number
-            input[i + 1].number = +input[i].number / +input[i + 1].number;
+            input[j].number = +input[i].number / +input[j].number;
 
             //set previous number to null
             input[i].number = null;
@@ -223,7 +248,7 @@ function evaluate() {
     //addition and subtraction
     for (let i = 0; i < (input.length - 1); i++) {
 
-        //skip if the current number is null (means it was already multiplied/divided)
+        //skip if the current number is null (means it was already raised to the exponent or multiplied/divided)
         if (input[i].number == null) {
             continue;
         }
