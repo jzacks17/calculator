@@ -267,6 +267,7 @@ function delete1() {
 function clearAll() {
     //clear entire display
     display.innerText = '';
+    displayAnswer.innerText ='';
 
     //empty the input
     input = [];
