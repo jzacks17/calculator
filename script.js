@@ -152,7 +152,7 @@ function userNumber(number) {
     }
 
     //determine when to cut off the display 
-    if ((display.innerText.length * window.innerHeight) > 7.5 * (window.innerWidth)) {
+    if ((display.innerText.length * window.innerHeight) > 10 * (window.innerWidth)) {
 
         //check to see if display has already been cut off 
         if (display.innerText[0] == '.' && display.innerText[1] == '.') {
@@ -202,7 +202,7 @@ function userOperator(operator) {
     display.innerText += operator.id;
 
     //determine when to cut off the display 
-    if ((display.innerText.length * window.innerHeight) > 7.5 * (window.innerWidth)) {
+    if ((display.innerText.length * window.innerHeight) > 10 * (window.innerWidth)) {
 
         //check to see if display has already been cut off 
         if (display.innerText[0] == '.' && display.innerText[1] == '.') {

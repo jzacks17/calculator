@@ -46,7 +46,7 @@ body {
 .display{
 
     width: 75%;
-    height: 20%;
+    height: 16%;
 
     border: 0.2em solid black;
 
@@ -54,7 +54,7 @@ body {
     
     color: #ffffff;
 
-    font-size: 5vh;
+    font-size: 4vh;
 
     text-align: right;
 
