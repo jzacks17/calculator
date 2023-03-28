@@ -9,8 +9,10 @@ const numbers = document.querySelectorAll(".number");
 // create a variable of type const called operators equal to all the operator buttons (querySelectorAll())
 const operators = document.querySelectorAll(".operator");
 
-// create a variable of type const called display, equal to the display element (querySelector())
-const display = document.querySelector(".display");
+// create a variable of type const called display, equal to the display equation element (querySelector())
+const display = document.querySelector(".equation");
+
+const displayAnswer = document.querySelector(".answerDisplay");
 
 // create a variable of type const called del, equal to the DEL element (querySelector())
 const del = document.querySelector(".delete");
@@ -138,6 +140,10 @@ function userNumber(number) {
 
         //set solved to false
         solved = false;
+
+        //empty displays
+        display.innerText ='';
+        displayAnswer.innerText = '';
     }
 
     else {
@@ -179,6 +185,12 @@ function userOperator(operator) {
 
         //set solved to false
         solved = false;
+
+        //display the answer
+        display.innerText = answer;
+
+        //empty answer display
+        displayAnswer.innerText = '';
     }
 
     //if a number has not been selected since the last operation, break 
@@ -426,7 +438,7 @@ function evaluate() {
         }
 
         //display answer
-        display.innerText = answer;
+        displayAnswer.innerText = answer;
     }
 
 

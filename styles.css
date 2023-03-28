@@ -46,7 +46,7 @@ body {
 .display{
 
     width: 75%;
-    height: 10%;
+    height: 20%;
 
     border: 0.2em solid black;
 
@@ -57,6 +57,9 @@ body {
     font-size: 5vh;
 
     text-align: right;
+
+    display: flex;
+    flex-direction: column;
 
 }
 
