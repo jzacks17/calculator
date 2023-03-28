@@ -420,6 +420,11 @@ function evaluate() {
         //set answer equal to the sum round to two decimal places 
         answer = (Math.round(sum * 100)) / 100;
 
+        //display in scientific notation if is greater than 1 x 10^7
+        if(answer > 1e7){
+            answer = answer.toExponential();
+        }
+
         //display answer
         display.innerText = answer;
     }
