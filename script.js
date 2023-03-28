@@ -471,6 +471,7 @@ function changeColour() {
         //change display colour
         display.style.backgroundColor = this.value;
         displayAnswer.style.backgroundColor = this.value;
+        document.querySelector(".display").style.backgroundColor = this.value;
     }
 
     else if (this.id == 'fontC') {
