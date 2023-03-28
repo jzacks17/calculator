@@ -470,6 +470,7 @@ function changeColour() {
         document.querySelectorAll('button').forEach(button => button.style.backgroundColor = this.value);
         //change display colour
         display.style.backgroundColor = this.value;
+        displayAnswer.style.backgroundColor = this.value;
     }
 
     else if (this.id == 'fontC') {
@@ -477,5 +478,6 @@ function changeColour() {
         document.querySelectorAll('button').forEach(button => button.style.color = this.value);
         //change display font colour
         display.style.color = this.value;
+        displayAnswer.style.color = this.value;
     }
 }
