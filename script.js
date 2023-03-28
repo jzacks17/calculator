@@ -79,14 +79,14 @@ window.addEventListener('keydown', function (e) {
     })
 
     //check to see if * was hit- set equal to multiplies
-    if(e.key == "*"){
+    if (e.key == "*") {
         //call user operator, passing it the multiplication button
         userOperator(document.getElementById("×"));
         return;
     }
 
     //check to see if / or % was hit - set equal to divides
-    if (e.key == "%" || e.key == '/'){
+    if (e.key == "%" || e.key == '/') {
         //call user operator, passing it the division button
         userOperator(document.getElementById("÷"));
         return;
@@ -145,6 +145,22 @@ function userNumber(number) {
         display.innerText += number.id;
     }
 
+    //determine when to cut off the display 
+    if ((display.innerText.length * window.innerHeight) > 7.5 * (window.innerWidth)) {
+
+        //check to see if display has already been cut off 
+        if (display.innerText[0] == '.' && display.innerText[1] == '.') {
+            
+            //cut off .. plus an additional character
+            display.innerText = '..' + display.innerText.slice(3);
+        }
+
+        else {
+            //cut off two characters
+            display.innerText = '..' + display.innerText.slice(2);
+        }
+    }
+
 
     //set input plus/equal to the number selected
     input[numOperations].number += number.id;
@@ -172,6 +188,24 @@ function userOperator(operator) {
 
     //update the display
     display.innerText += operator.id;
+
+    //determine when to cut off the display 
+    if ((display.innerText.length * window.innerHeight) > 7.5 * (window.innerWidth)) {
+
+        //check to see if display has already been cut off 
+        if (display.innerText[0] == '.' && display.innerText[1] == '.') {
+            
+            //cut off .. plus an additional character
+            display.innerText = '..' + display.innerText.slice(3);
+        }
+
+        else {
+            //cut off two characters
+            display.innerText = '..' + display.innerText.slice(2);
+        }
+    }
+
+
 
     //set the input[numOperations] operator object equal to the operator that was clicked
     input[numOperations].operator = operator.id;
@@ -218,7 +252,7 @@ function delete1() {
 }
 
 
-function  clearAll() {
+function clearAll() {
     //clear entire display
     display.innerText = '';
 
