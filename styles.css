@@ -49,11 +49,8 @@ body {
     height: 16%;
 
     border: 0.2em solid black;
-
-    background-color:  #020222;
-    
+    background-color:  #020222;  
     color: #ffffff;
-
     font-size: 4vh;
 
     text-align: right;
@@ -61,6 +58,16 @@ body {
     display: flex;
     flex-direction: column;
 
+}
+
+.equation{
+    background-color:  #020222;  
+    color: #ffffff;
+}
+
+.answerDisplay{
+    background-color:  #020222; 
+    color: #ffffff;
 }
 
 .row{
