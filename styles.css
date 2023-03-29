@@ -60,13 +60,9 @@ body {
 
 }
 
-.equation{
+/* Apply initial background colour and font colour to equation and answer display */
+.display>*{
     background-color:  #020222;  
-    color: #ffffff;
-}
-
-.answerDisplay{
-    background-color:  #020222; 
     color: #ffffff;
 }
 
