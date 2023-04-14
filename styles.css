@@ -16,7 +16,7 @@ body {
 }
 
 /* Styling for the entire calculator */
-.calculator{
+.calculator {
 
     background-color: #6464ff;
     position: absolute;
@@ -26,7 +26,7 @@ body {
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    
+
     border: 0.4em solid #000000;
     border-radius: 10px;
 
@@ -43,13 +43,13 @@ body {
 }
 
 /* styling for the display */
-.display{
+.display {
 
     width: 75%;
     height: 16%;
 
     border: 0.2em solid black;
-    background-color:  #020222;  
+    background-color: #020222;
     color: #ffffff;
     font-size: 4vh;
 
@@ -60,22 +60,22 @@ body {
 
 }
 
-/* Apply initial background colour and font colour to equation and answer display */
-.display>*{
-    background-color:  #020222;  
+/* style equation and answer display */
+.display>div {
+    background-color: #020222;
     color: #ffffff;
 }
 
-.row{
+.row {
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: row;
 
     justify-content: space-around;
 
 }
 
-.button{
+.button {
     font-size: 1em;
     font-weight: bold;
     background-color: #020222;
@@ -87,7 +87,7 @@ body {
 }
 
 /* Styling for colour picker */
-.container{
+.container {
     position: absolute;
 
     height: 50%;
@@ -111,9 +111,9 @@ body {
 
 .colour {
 
-    width:100%;
+    width: 100%;
     padding: 0em 1.5em;
-    
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -132,10 +132,10 @@ input.colourP {
     background-color: none;
 }
 
-h1{
+h1 {
     font-size: 2vw;
 }
 
-h2{
+h2 {
     font-size: 1.5vw;
 }
